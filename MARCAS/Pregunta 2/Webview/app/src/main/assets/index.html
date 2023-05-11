@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Calculadora</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f1f1f1;
+            }
+            
+            #calculadora {
+                margin: 50px auto;
+                width: 400px;
+                background-color: #fff;
+                border: 2px solid #333;
+                border-radius: 5px;
+                padding: 20px;
+            }
+            
+            h1 {
+                text-align: center;
+            }
+            
+            p {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+            
+            input[type="text"] {
+                width: 100%;
+                font-size: 18px;
+                padding: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                margin-bottom: 10px;
+            }
+            
+            button {
+                display: block;
+                width: 100%;
+                font-size: 18px;
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                background-color: #333;
+                color: #fff;
+                cursor: pointer;
+            }
+            
+            #resultado {
+                font-weight: bold;
+            }
+            
+            /* Estilo para el efecto del botón */
+            .resaltado {
+                background-color: yellow;
+            }
+        </style>
+        <script src="jquery-3.6.4.min.js"></script>
+    </head>
+    <body>
+        <div id="calculadora">
+            <h1>Calculadora</h1>
+            <p>Introduce el operando número 1:</p>
+            <input type="text" id="operando1">
+            <p>Introduce el operando número 2:</p>
+            <input type="text" id="operando2">
+            <button id="calcula">Calcular</button>
+            <p>Resultado:</p>
+            <input type="text" id="resultado">
+        </div>
+        <script>
+            $(document).ready(function(){
+                $("#calcula").click(function(){
+                    // Añade la clase resaltado
+                    $(this).toggleClass("resaltado");
+                    
+                    var op1 = $("#operando1").val()*1
+                    var op2 = $("#operando2").val()*1
+                    var resultado = op1+op2
+                    $("#resultado").val(resultado)
+                    
+                    // Quita la clase resaltado después de 300ms
+                    setTimeout(function(){
+                        $("#calcula").toggleClass("resaltado");
+                    }, 300);
+                })
+            })
+        </script>
+    </body>
+</html>
+

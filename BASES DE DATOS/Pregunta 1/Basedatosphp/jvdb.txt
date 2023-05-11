@@ -1,0 +1,47 @@
+<?php
+
+    class JVDB {
+        
+        public function __construct($basededatos){
+            $this->db = $basededatos;
+            echo "La base de datos que se ha seleccionado es: ".$this->db."<br>";
+        }
+        
+        public function peticion($consulta){
+            echo " A continuación vamos a procesar la siguiente consulta: ".$consulta.">br>";
+            
+            $primerapalabra = explode(" ",$consulta)[0];
+            $segundapalabra = explode(" ",$consulta)[1];
+            $tercerapalabra = explode(" ",$consulta)[2];
+            echo "La primera palabra es: ".$primerapalabra."<br>";
+            switch($primerapalabra){
+                case "CREATE":
+                        echo " Voy a crear algo<br>";
+                        if($segundapalabra == "TABLE"){
+                            
+                            $myfile = fopen("db/".$this->db."/".$tercerapalabra.".csv", "a") or die("Unable to open file!");
+                            $text = $consulta;
+                            preg_match('#\((.*?)\)#', $text, $match);
+                            print $match[1];
+                            $txt = $match[1];
+                            $campos = explode(",",$txt);
+                            $cadenacampos = "";
+                            for($i = 0;$i<count($campos);$i++){
+                                $cadenacampos .= '"'.$campos[$i].'",';
+                            }
+                            $recortado = substr($cadenacampos, 0, -1);
+                            fwrite($myfile, $recortado);
+                            
+                            fclose($myfile);
+                        }
+                    break;
+                case "INSERT":
+                    $tabla = explode(" ",$consulta)[2];
+                    $myfile = fopen("db/".$this->db."/".$tabla.".csv", "a") or die("Unable to open file!");
+                    $text = $consulta;
+                    break;
+            }
+        }
+    }
+
+?>

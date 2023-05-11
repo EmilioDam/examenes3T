@@ -1,0 +1,13 @@
+<?php
+
+include "jvdb.php";
+
+$conexion = new JVDB("crm");
+$conexion->peticion("CREATE TABLE clientes (id,nombre, apellidos, email, telefono)");
+$conexion->peticion('INSERT INTO clientes VALUES ("1","jose vicente","carratala","info@josevicentecarratala.com","652417874")');
+
+$conexion->peticion("CREATE TABLE productos (id,nombreproducto,precio,dimensiones)");
+$conexion->peticion('INSERT INTO productos VALUES ("1","raton","25","8x5x6")');
+
+
+?>

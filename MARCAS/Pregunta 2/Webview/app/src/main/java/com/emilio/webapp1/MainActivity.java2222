@@ -1,0 +1,24 @@
+package com.emilio.webapp1;
+
+import android.os.Bundle;
+import android.webKit.WebSetting;
+import android.webkit.WebView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    WebView miVisorWeb;
+    String url = "file:///androd_asset/index.html";
+    // mWebView.loadUrl(");
+    @Override
+        protected void onCreate(Bundle saveInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        miVisorWeb = (WebView) findViewById(R.id.visorWeb);
+        final WebSetting ajustesVisorWeb = miVisorWeb.getSettings();
+        ajustesVisorWeb.setJavaScriptEnabled(true);
+        miVisorWeb.loadUrl(url);
+
+    }
+}
